@@ -1,0 +1,6 @@
+spring:
+  activemq:
+    broker-url: tcp://192.168.226.133:61616
+    in-memory: true
+    pool:
+      enabled: false #如果此处设置为true，需要加如下的依赖包，否则会自动配置失败，报JmsMessagingTemplate注入失败

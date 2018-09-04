@@ -3,18 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>easy-java</artifactId>
+        <artifactId>easy-springboot</artifactId>
         <groupId>com.xiao</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>easy-springboot</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>easy-springboot-jms-mail</module>
-        <module>easy-springboot-log-elk</module>
-        <module>easy-springboot-jms-ActiveMQ</module>
-    </modules>
+    <artifactId>easy-springboot-jms-ActiveMQ</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>
