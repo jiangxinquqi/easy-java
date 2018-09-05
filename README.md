@@ -7,5 +7,6 @@
 * easy-springboot-jms-ActiveMQ  :   [消息队列-ActiveMQ](https://blog.csdn.net/songfeihu0810232/article/details/78648706)   
 ### 日志管理
 * easy-springboot-log-elk   :   [logback输出日志到elk](https://www.cnblogs.com/zhyg/p/6994314.html)
-
+### 数据访问
+* easy-springboot-data-mybatis  :   [整合mybatis](https://blog.csdn.net/Winter_chen001/article/details/80010967)
     

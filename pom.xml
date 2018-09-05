@@ -12,6 +12,7 @@
     <modules>
         <module>easy-springboot</module>
         <module>easy-springcloud</module>
+        <module>easy-common</module>
     </modules>
 
     <properties>
@@ -51,6 +52,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.31</version>
         </dependency>
     </dependencies>
 
