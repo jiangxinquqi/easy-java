@@ -39,7 +39,6 @@ public class JmsApplicationTest {
         simpleMailMessage.setText("这里是一段简单文本。");
         // 发送邮件
         mailSender.send(simpleMailMessage);
-
         System.out.println("邮件已发送");
     }
 
