@@ -9,4 +9,6 @@
 * easy-springboot-log-elk   :   [logback输出日志到elk](https://www.cnblogs.com/zhyg/p/6994314.html)
 ### 数据访问
 * easy-springboot-data-mybatis  :   [整合mybatis](https://blog.csdn.net/Winter_chen001/article/details/80010967)
+### web工程
+* easy-springboot-web-https  :   [搭建https服务器](https://blog.csdn.net/qq_26562641/article/details/80483193)
     
