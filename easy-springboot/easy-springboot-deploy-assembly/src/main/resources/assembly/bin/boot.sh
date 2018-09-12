@@ -13,12 +13,15 @@ SERVER_NAME='easy-springboot-deploy-assembly-1.0-SNAPSHOT.jar'
 
 cd ..
 DEPLOY_DIR=`pwd`
-
-# 定义日志文件
-LOGS_DIR=$DEPLOY_DIR/logs
-CATALINA_OUT=$LOGS_DIR/catalina.out
-if [ ! -d $LOGS_DIR ]; then
-  mkdir $LOGS_DIR
+# 日志框架配置文件
+LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
+# 项目配置文件
+SPRING_CONFIG_LOCATION=$DEPLOY_DIR/config/application.yml
+# 日志输出目录
+LOGGING_PATH=$DEPLOY_DIR/logs
+CATALINA_OUT=$LOGGING_PATH/catalina.out
+if [ ! -d $LOGGING_PATH ]; then
+  mkdir $LOGGING_PATH
 fi
 if [ ! -f $CATALINA_OUT ]; then
   touch $CATALINA_OUT
@@ -26,13 +29,13 @@ fi
 
 if [ "$1" = "" ];
 then
-    echo -e "\033[0;31m 未输入操作名 \033[0m  \033[0;34m {start|stop|restart|status} \033[0m"
+    echo -e "\033[0;31m 请输入操作名 \033[0m  \033[0;34m {start|stop|restart|status} \033[0m"
     exit 1
 fi
 
 # 获取应用的端口号
-SERVER_PORT=`sed -nr '/port: [0-9]+/ s/.*port: +([0-9]+).*/\1/p' $DEPLOY_DIR/config/application.yml`
-CONFIG_FILES=" -Dlogging.path=$LOGS_DIR -Dlogging.config=$DEPLOY_DIR/config/logback-spring.xml -Dspring.config.location=$DEPLOY_DIR/config/application.yml "
+SERVER_PORT=`sed -nr '/port: [0-9]+/ s/.*port: +([0-9]+).*/\1/p' $SPRING_CONFIG_LOCATION`
+CONFIG_FILES=" -Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION "
 function start()
 {
 
@@ -40,7 +43,7 @@ function start()
     PIDS=`ps -f | grep java | grep "$SERVER_NAME" |awk '{print $2}'`
     if [ -n "$PIDS" ]; then
       echo -e "\033[31m ERROR: The $SERVER_NAME already started! \033[0m"
-      echo "PID: $PIDS"
+      echo -e "\033[31m PID: $PIDS \033[0m"
       exit 1
     fi
 
@@ -79,7 +82,7 @@ function stop()
 
     PIDS=`ps -ef | grep java | grep "$SERVER_NAME" |awk '{print $2}'`
     if [ -z "$PIDS" ]; then
-      echo "ERROR: The $SERVER_NAME does not started!"
+      echo "\033[31m ERROR: The $SERVER_NAME does not started! \033[0m"
       exit 1
     fi
 

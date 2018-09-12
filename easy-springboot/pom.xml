@@ -14,9 +14,11 @@
     <modules>
         <module>easy-springboot-jms-mail</module>
         <module>easy-springboot-log-elk</module>
-        <module>easy-springboot-jms-ActiveMQ</module>
+        <module>easy-springboot-jms-activemq</module>
         <module>easy-springboot-data-mybatis</module>
         <module>easy-springboot-web-https</module>
+        <module>easy-springboot-deploy-assembly</module>
+        <module>easy-springboot-log-logback</module>
     </modules>
 
 </project>
