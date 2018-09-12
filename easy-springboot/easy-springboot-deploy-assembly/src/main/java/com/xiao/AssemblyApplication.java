@@ -22,9 +22,12 @@ public class AssemblyApplication {
 
     @GetMapping("/test")
     public String test() {
-        log.info("info..............");
-        log.warn("warn..............");
-        log.error("error..............");
+        for (int i = 0; i < 500; i++) {
+            log.debug("debug............");
+            log.info("info..............");
+            log.warn("warn..............");
+            log.error("error..............");
+        }
         return "test";
     }
 }
