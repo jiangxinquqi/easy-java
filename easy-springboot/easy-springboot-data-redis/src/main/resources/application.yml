@@ -1,0 +1,7 @@
+spring:
+  redis:
+    database: 0
+    host: 120.77.80.191
+    port: 6379
+    password: xiaojianjun
+

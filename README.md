@@ -10,6 +10,7 @@
 * easy-springboot-log-logback   :   [使用logback输出日志](https://blog.csdn.net/jiangxinquqi/article/details/82659926)
 ### 数据访问
 * easy-springboot-data-mybatis  :   [整合mybatis](https://blog.csdn.net/jiangxinquqi/article/details/82660023)
+* easy-springboot-data-redis  :   [整合redis](https://blog.csdn.net/jiangxinquqi/article/details/81387287)
 ### web工程
 * easy-springboot-web-https  :   [搭建https服务器](https://blog.csdn.net/jiangxinquqi/article/details/82660032)
 ### 工程化

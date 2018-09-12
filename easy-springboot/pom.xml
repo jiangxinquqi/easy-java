@@ -19,6 +19,7 @@
         <module>easy-springboot-web-https</module>
         <module>easy-springboot-deploy-assembly</module>
         <module>easy-springboot-log-logback</module>
+        <module>easy-springboot-data-redis</module>
     </modules>
 
 </project>
