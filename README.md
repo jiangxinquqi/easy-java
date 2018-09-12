@@ -1,4 +1,3 @@
-[TOC]
 # 学习过程，包括Springboot，Springcloud，java基础，Linux服务器
 
 ## 一、Easy Java Base （基于JDK8）
@@ -14,6 +13,8 @@
 ### 数据访问
 * easy-springboot-data-mybatis  :   [整合mybatis](https://blog.csdn.net/jiangxinquqi/article/details/82660023)
 * easy-springboot-data-redis  :   [整合redis](https://blog.csdn.net/jiangxinquqi/article/details/81387287)
+### 事务管理
+* easy-springboot-transaction-lcn(TODO)  :   [分布式事务管理LCN](https://blog.csdn.net/jiangxinquqi/article/details/82664605)
 ### web工程
 * easy-springboot-web-https  :   [搭建https服务器](https://blog.csdn.net/jiangxinquqi/article/details/82660032)
 ### 工程化
@@ -24,4 +25,4 @@
 ## 四、Easy Linux （基于CentOS7）
 ***
 ### 网络
-* 
+* easy-linux : [服务器TIME_WAIT和CLOSE_WAIT详解和解决办法](https://blog.csdn.net/jiangxinquqi/article/details/82660032)
