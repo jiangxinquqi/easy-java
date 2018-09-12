@@ -1,5 +1,6 @@
 #!/bin/bash
 #功能简介：springboot脚本文件
+#        执行该脚本需要进入bin目录下执行。
 #参数简介：
 #    $1:操作名称
 #   ./boot.sh start : 启动应用
