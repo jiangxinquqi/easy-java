@@ -1,6 +1,9 @@
-## 学习过程，包括Springboot，Springcloud，java基础
+[TOC]
+# 学习过程，包括Springboot，Springcloud，java基础，Linux服务器
 
-## Easy Spring Boot 基础教程（基于2.0.4）
+## 一、Easy Java Base （基于JDK8）
+
+## 二、Easy Spring Boot 基础教程（基于Spring Boot-2.0.4）
 ***
 ### 消息服务
 * easy-springboot-jms-mail  :   [邮件发送](https://blog.csdn.net/jiangxinquqi/article/details/82659989)   
@@ -15,4 +18,10 @@
 * easy-springboot-web-https  :   [搭建https服务器](https://blog.csdn.net/jiangxinquqi/article/details/82660032)
 ### 工程化
 * easy-springboot-deploy-assembly  :   [assembly + shell 实现工程化部署](https://blog.csdn.net/jiangxinquqi/article/details/82624093)
-    
+
+## 三、Easy Spring Cloud 基础教程（基于Spring Cloud-Finchley.SR1）
+
+## 四、Easy Linux （基于CentOS7）
+
+### 网络
+* 
