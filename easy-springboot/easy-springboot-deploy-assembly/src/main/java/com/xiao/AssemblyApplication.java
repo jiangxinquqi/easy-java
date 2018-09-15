@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.FileAttribute;
+
 /**
  * @desc: 功能描述：（）
  * @author： jianjun.xiao
@@ -29,5 +33,10 @@ public class AssemblyApplication {
             log.error("error..............");
         }
         return "test";
+    }
+
+    @GetMapping("/file")
+    public String file() throws IOException {
+        return Files.createTempDirectory("weixin-mp-kf-download", new FileAttribute[0]).toFile().toString();
     }
 }
