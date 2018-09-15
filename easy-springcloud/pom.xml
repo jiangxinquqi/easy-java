@@ -14,6 +14,7 @@
     <modules>
         <module>easy-springcloud-provider-simple</module>
         <module>easy-springcloud-consumer-simple</module>
+        <module>easy-springcloud-discovery-eureka</module>
     </modules>
 
 

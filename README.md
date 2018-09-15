@@ -22,6 +22,7 @@
 
 ## 三、Easy Spring Cloud 基础教程（基于Spring Cloud-Finchley.SR1）
 ***
+* esay-springcloud-discovery-eureka :   [服务的注册与发现(Eureka)](https://blog.csdn.net/jiangxinquqi/article/details/82720267)
 ## 四、Easy Linux （基于CentOS7）
 ***
 ### 网络

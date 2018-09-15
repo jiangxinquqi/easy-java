@@ -1,0 +1,17 @@
+server:
+  port: 6379
+spring:
+  application:
+    name: eureka-server
+  security:
+    user:
+      name: admin
+      password: xiaojianjun
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false  # eureka不进行注册
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://admin:xiaojianjun@${eureka.instance.hostname}:${server.port}/eureka/

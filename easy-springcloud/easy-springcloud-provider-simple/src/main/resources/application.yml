@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: provider-simple
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:xiaojianjun@localhost:6379/eureka/
