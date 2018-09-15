@@ -1,0 +1,5 @@
+server:
+  port: 6310
+spring:
+  application:
+    name: consumer-simple
