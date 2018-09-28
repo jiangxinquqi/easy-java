@@ -1,6 +1,13 @@
 # 学习过程，包括Springboot，Springcloud，java基础，Linux服务器
+***
+* 我的博客:https://blog.csdn.net/jiangxinquqi/article/details/82345241
+* GitHub:https://github.com/xiaoxiao65535
+* Gitee:https://gitee.com/jiangxinquqi
+* easy-java:https://github.com/xiaoxiao65535/easy-java
 
 ## 一、Easy Java Base （基于JDK8）
+### 并发编程实战
+* easy-base-concurrent | 并发基础   :   [并发基础](https://blog.csdn.net/jiangxinquqi/article/details/82877319)
 ***
 ## 二、Easy Spring Boot 基础教程（基于Spring Boot-2.0.4）
 ***
@@ -19,6 +26,7 @@
 * easy-springboot-web-https  :   [搭建https服务器](https://blog.csdn.net/jiangxinquqi/article/details/82660032)
 ### 工程化
 * easy-springboot-deploy-assembly  :   [assembly + shell 实现工程化部署](https://blog.csdn.net/jiangxinquqi/article/details/82624093)
+### 分布式
 
 ## 三、Easy Spring Cloud 基础教程（基于Spring Cloud-Finchley.SR1）
 ***

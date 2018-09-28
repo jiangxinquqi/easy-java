@@ -13,6 +13,7 @@
         <module>easy-springboot</module>
         <module>easy-springcloud</module>
         <module>easy-common</module>
+        <module>easy-base</module>
     </modules>
 
     <properties>
