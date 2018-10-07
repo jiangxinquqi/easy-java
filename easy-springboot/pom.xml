@@ -20,6 +20,7 @@
         <module>easy-springboot-deploy-assembly</module>
         <module>easy-springboot-log-logback</module>
         <module>easy-springboot-data-redis</module>
+        <module>easy-springboot-web-cors</module>
     </modules>
 
 </project>
