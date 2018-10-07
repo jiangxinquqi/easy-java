@@ -8,6 +8,7 @@
 ## 一、Easy Java Base （基于JDK8）
 ### 并发编程实战
 * easy-base-concurrent | 并发基础   :   [并发基础](https://blog.csdn.net/jiangxinquqi/article/details/82877319)
+* easy-base-concurrent | 线程安全-原子性   :   [线程安全-原子性](https://blog.csdn.net/jiangxinquqi/article/details/82886263)
 
 ## 二、Easy Spring Boot 基础教程（基于Spring Boot-2.0.4）
 
