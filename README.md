@@ -9,6 +9,9 @@
 ### 并发编程实战
 * easy-base-concurrent | 并发基础   :   [并发基础](https://blog.csdn.net/jiangxinquqi/article/details/82877319)
 * easy-base-concurrent | 线程安全-原子性   :   [线程安全-原子性](https://blog.csdn.net/jiangxinquqi/article/details/82886263)
+* easy-base-concurrent | 线程安全-原子性-锁   :   [线程安全-原子性-锁](https://blog.csdn.net/jiangxinquqi/article/details/82956904)
+* easy-base-concurrent | 线程安全-可见性  :   [线程安全-可见性](https://blog.csdn.net/jiangxinquqi/article/details/82957057)
+* easy-base-concurrent | 线程安全-可见性  :   [线程安全-有序性](https://blog.csdn.net/jiangxinquqi/article/details/82957073)
 
 ## 二、Easy Spring Boot 基础教程（基于Spring Boot-2.0.4）
 
@@ -25,6 +28,7 @@
 * easy-springboot-transaction-lcn(TODO)  :   [分布式事务管理LCN](https://blog.csdn.net/jiangxinquqi/article/details/82664605)
 ### web工程
 * easy-springboot-web-https  :   [搭建https服务器](https://blog.csdn.net/jiangxinquqi/article/details/82660032)
+* easy-springboot-web-cors  :   [配置cors解决跨域请求问题](https://blog.csdn.net/jiangxinquqi/article/details/82957309)
 ### 工程化
 * easy-springboot-deploy-assembly  :   [assembly + shell 实现工程化部署](https://blog.csdn.net/jiangxinquqi/article/details/82624093)
 ### 分布式
