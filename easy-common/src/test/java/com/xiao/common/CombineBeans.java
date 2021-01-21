@@ -1,7 +1,5 @@
 package com.xiao.common;
 
-import org.springframework.beans.BeanUtils;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -64,6 +62,7 @@ public class CombineBeans {
         CombineBeans combineBeans = new CombineBeans();
         Object o = combineBeans.combineSydwCore(user, user1);
         System.out.println(o);
+        System.out.println("hah");
 
     }
 }
