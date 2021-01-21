@@ -1,7 +1,5 @@
 package com.xiao.common;
 
-import org.springframework.beans.BeanUtils;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
