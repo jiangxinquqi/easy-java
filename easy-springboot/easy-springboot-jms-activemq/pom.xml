@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>easy-springboot-jms-ActiveMQ</artifactId>
+    <artifactId>easy-springboot-jms-activemq</artifactId>
 
     <dependencies>
         <dependency>
