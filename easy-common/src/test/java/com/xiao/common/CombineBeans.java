@@ -62,7 +62,6 @@ public class CombineBeans {
         CombineBeans combineBeans = new CombineBeans();
         Object o = combineBeans.combineSydwCore(user, user1);
         System.out.println(o);
-        System.out.println("hah");
 
     }
 }
