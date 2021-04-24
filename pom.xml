@@ -14,12 +14,14 @@
         <module>easy-springcloud</module>
         <module>easy-common</module>
         <module>easy-base</module>
+        <module>easy-springboot/easy-springboot-zookpeer</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <zookpeer.version>3.5.5</zookpeer.version>
     </properties>
 
     <parent>
@@ -36,6 +38,11 @@
                 <version>Finchley.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookpeer.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
