@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.dao.mapper.SalgradeMapper" >
+    <resultMap id="BaseResultMap" type="com.xiao.dao.model.SalgradeDO" >
+        <result column="grade" property="grade" jdbcType="INTEGER" />
+        <result column="losal" property="losal" jdbcType="INTEGER" />
+        <result column="hisal" property="hisal" jdbcType="INTEGER" />
+    </resultMap>
+    <insert id="insert" parameterType="com.xiao.dao.model.SalgradeDO" >
+        insert into salgrade (grade, losal, hisal
+        )
+        values (#{grade,jdbcType=INTEGER}, #{losal,jdbcType=INTEGER}, #{hisal,jdbcType=INTEGER}
+               )
+    </insert>
+    <insert id="insertSelective" parameterType="com.xiao.dao.model.SalgradeDO" >
+        insert into salgrade
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="grade != null" >
+                grade,
+            </if>
+            <if test="losal != null" >
+                losal,
+            </if>
+            <if test="hisal != null" >
+                hisal,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="grade != null" >
+                #{grade,jdbcType=INTEGER},
+            </if>
+            <if test="losal != null" >
+                #{losal,jdbcType=INTEGER},
+            </if>
+            <if test="hisal != null" >
+                #{hisal,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+</mapper>

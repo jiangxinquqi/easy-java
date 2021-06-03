@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.dao.mapper.DeptMapper">
+    <resultMap id="BaseResultMap" type="com.xiao.dao.model.DeptDO">
+        <id column="deptno" property="deptno" jdbcType="INTEGER"/>
+        <result column="dname" property="dname" jdbcType="VARCHAR"/>
+        <result column="loc" property="loc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="EmpResultMap" type="com.xiao.dao.model.EmpDO">
+        <id column="empno" property="empno" jdbcType="INTEGER"/>
+        <result column="ename" property="ename" jdbcType="VARCHAR"/>
+        <result column="job" property="job" jdbcType="VARCHAR"/>
+        <result column="mgr" property="mgr" jdbcType="INTEGER"/>
+        <result column="hiredate" property="hiredate" jdbcType="DATE"/>
+        <result column="sal" property="sal" jdbcType="DECIMAL"/>
+        <result column="comm" property="comm" jdbcType="DECIMAL"/>
+        <result column="deptno" property="deptno" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="FullResultMap" type="com.xiao.bo.DeptBO" extends="BaseResultMap">
+        <collection property="emps" javaType="java.util.List" ofType="com.xiao.dao.model.EmpDO" resultMap="EmpResultMap">
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        deptno, dname, loc
+    </sql>
+
+    <select id="getFullInfoById" resultMap="FullResultMap" parameterType="java.lang.Integer">
+        SELECT *
+        from dept d
+                 LEFT JOIN emp e ON d.deptno = e.deptno
+        WHERE d.deptno = #{deptno,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from dept
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from dept
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.xiao.dao.model.DeptDO">
+        insert into dept (deptno, dname, loc)
+        values (#{deptno,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.xiao.dao.model.DeptDO">
+        insert into dept
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deptno != null">
+                deptno,
+            </if>
+            <if test="dname != null">
+                dname,
+            </if>
+            <if test="loc != null">
+                loc,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deptno != null">
+                #{deptno,jdbcType=INTEGER},
+            </if>
+            <if test="dname != null">
+                #{dname,jdbcType=VARCHAR},
+            </if>
+            <if test="loc != null">
+                #{loc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xiao.dao.model.DeptDO">
+        update dept
+        <set>
+            <if test="dname != null">
+                dname = #{dname,jdbcType=VARCHAR},
+            </if>
+            <if test="loc != null">
+                loc = #{loc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xiao.dao.model.DeptDO">
+        update dept
+        set dname = #{dname,jdbcType=VARCHAR},
+            loc   = #{loc,jdbcType=VARCHAR}
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </update>
+</mapper>
