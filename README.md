@@ -4,7 +4,7 @@
 * GitHub:https://github.com/xiaoxiao65535
 * Gitee:https://gitee.com/jiangxinquqi
 * easy-java:https://github.com/xiaoxiao65535/easy-java
-* 测试的咯
+* 提交规范：#Data 20210604 #comment 提交[0.1h] 
 
 ## 一、Easy Java Base （基于JDK8）
 ### 并发编程实战
