@@ -21,6 +21,8 @@
         <module>easy-springboot-log-logback</module>
         <module>easy-springboot-data-redis</module>
         <module>easy-springboot-web-cors</module>
+        <module>easy-springboot-zookpeer</module>
+        <module>easy-springboot-schedule</module>
     </modules>
 
 </project>

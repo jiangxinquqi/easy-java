@@ -9,8 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>easy-springboot-web-cors</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>easy-springboot-schedule</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -22,6 +26,5 @@
             <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>

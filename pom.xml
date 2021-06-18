@@ -14,7 +14,6 @@
         <module>easy-springcloud</module>
         <module>easy-common</module>
         <module>easy-base</module>
-        <module>easy-springboot/easy-springboot-zookpeer</module>
     </modules>
 
     <properties>
