@@ -24,6 +24,7 @@
         <module>easy-springboot-zookpeer</module>
         <module>easy-springboot-schedule</module>
         <module>easy-springboot-solrJ</module>
+        <module>easy-springboot-spark</module>
     </modules>
 
 </project>
