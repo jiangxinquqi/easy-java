@@ -23,6 +23,7 @@
         <module>easy-springboot-web-cors</module>
         <module>easy-springboot-zookpeer</module>
         <module>easy-springboot-schedule</module>
+        <module>easy-springboot-solrJ</module>
     </modules>
 
 </project>
