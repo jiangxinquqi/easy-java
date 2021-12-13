@@ -25,6 +25,7 @@
         <module>easy-springboot-schedule</module>
         <module>easy-springboot-solrJ</module>
         <module>easy-springboot-spark</module>
+        <module>easy-springboot-cloud-manager-api</module>
     </modules>
 
 </project>
