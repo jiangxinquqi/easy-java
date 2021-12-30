@@ -26,6 +26,7 @@
         <module>easy-springboot-solrJ</module>
         <module>easy-springboot-spark</module>
         <module>easy-springboot-cloud-manager-api</module>
+        <module>easy-spring-boot-shallwe</module>
     </modules>
 
 </project>

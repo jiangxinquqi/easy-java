@@ -1,5 +1,5 @@
 echo off
-set APP_NAME=easy-springboot-deploy-assembly-1.0-SNAPSHOT.jar
+set APP_NAME=easy-springboot-deploy-assembly.jar
 set CONFIG= -Dspring.config.location=../config/application.yml
 set LOG_PATH= -Dlogging.path=../logs
 set LOG_CONFIG= -Dlogging.config=../config/logback-spring.xml

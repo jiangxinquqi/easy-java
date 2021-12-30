@@ -10,10 +10,11 @@
 #启动参数
 JAVA_OPTS="-server -Xms400m -Xmx400m -Xmn300m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
 
-SERVER_NAME='easy-springboot-deploy-assembly-1.0-SNAPSHOT.jar'
+SERVER_NAME='easy-springboot-deploy-assembly.jar'
+SERVER_PORT=8080
 
-cd ..
-DEPLOY_DIR=`pwd`
+BIN_DIR=`dirname $0`
+DEPLOY_DIR=`cd "$BIN_DIR"/..; pwd`
 # 日志框架配置文件
 LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
 # 项目配置文件
@@ -35,13 +36,12 @@ then
 fi
 
 # 获取应用的端口号
-SERVER_PORT=`sed -nr '/port: [0-9]+/ s/.*port: +([0-9]+).*/\1/p' $SPRING_CONFIG_LOCATION`
 CONFIG_FILES=" -Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION "
 function start()
 {
 
     # 检测应用是否已经启动
-    PIDS=`ps -f | grep java | grep "$SERVER_NAME" |awk '{print $2}'`
+    PIDS=`ps -ef | grep java | grep "$SERVER_NAME" |awk '{print $2}'`
     if [ -n "$PIDS" ]; then
       echo -e "\033[31m ERROR: The $SERVER_NAME already started! \033[0m"
       echo -e "\033[31m PID: $PIDS \033[0m"
@@ -59,6 +59,7 @@ function start()
 
     echo -e "Starting the $SERVER_NAME ..."
     echo -e "\033[33m CATALINA_OUT: $CATALINA_OUT \033[0m"
+    echo -e "nohup java $JAVA_OPTS $CONFIG_FILES -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &"
     nohup java $JAVA_OPTS $CONFIG_FILES -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &
     COUNT=0
     while [ $COUNT -lt 1 ]; do
@@ -67,7 +68,7 @@ function start()
       if [ -n "$SERVER_PORT" ]; then
         COUNT=`netstat -an | grep $SERVER_PORT | wc -l`
       else
-        COUNT=`ps -f | grep java | grep "$SERVER_NAME" | awk '{print $2}' | wc -l`
+        COUNT=`ps -ef | grep java | grep "$SERVER_NAME" | awk '{print $2}' | wc -l`
       fi
       if [ $COUNT -gt 0 ]; then
         break
@@ -117,7 +118,7 @@ function restart()
 
 function status()
 {
-    PIDS=`ps -f | grep java | grep "$SERVER_NAME" | awk '{print $2}'`
+    PIDS=`ps -ef | grep java | grep "$SERVER_NAME" | awk '{print $2}'`
     if [ -n "$PIDS" ]; then
 	echo -e "\033[32m The $SERVER_NAME is running...! \033[0m"
 	echo -e "\033[32m PID: $PIDS \033[0m"
