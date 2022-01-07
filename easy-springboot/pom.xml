@@ -27,6 +27,7 @@
         <module>easy-springboot-spark</module>
         <module>easy-springboot-cloud-manager-api</module>
         <module>easy-spring-boot-shallwe</module>
+        <module>easy-springboot-log-log4j2</module>
     </modules>
 
 </project>
