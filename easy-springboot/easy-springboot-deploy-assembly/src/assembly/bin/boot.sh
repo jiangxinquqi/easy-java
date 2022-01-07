@@ -15,13 +15,17 @@ SERVER_PORT=8080
 
 BIN_DIR=`dirname $0`
 DEPLOY_DIR=`cd "$BIN_DIR"/..; pwd`
-# 日志框架配置文件
-LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
+
 # 项目配置文件
 SPRING_CONFIG_LOCATION=$DEPLOY_DIR/config/application.yml
-# 日志输出目录
+
+# 日志配置
+LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
 LOGGING_PATH=$DEPLOY_DIR/logs
 CATALINA_OUT=$LOGGING_PATH/catalina.out
+
+APP_ENV=" -Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION "
+
 if [ ! -d $LOGGING_PATH ]; then
   mkdir $LOGGING_PATH
 fi
@@ -35,8 +39,6 @@ then
     exit 1
 fi
 
-# 获取应用的端口号
-CONFIG_FILES=" -Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION "
 function start()
 {
 
@@ -59,8 +61,8 @@ function start()
 
     echo -e "Starting the $SERVER_NAME ..."
     echo -e "\033[33m CATALINA_OUT: $CATALINA_OUT \033[0m"
-    echo -e "nohup java $JAVA_OPTS $CONFIG_FILES -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &"
-    nohup java $JAVA_OPTS $CONFIG_FILES -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &
+    echo -e "nohup java $JAVA_OPTS $APP_ENV -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &"
+    nohup java $JAVA_OPTS $APP_ENV -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &
     COUNT=0
     while [ $COUNT -lt 1 ]; do
       echo -e ".\c"
