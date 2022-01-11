@@ -1,6 +1,8 @@
 package com.xiao.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +16,6 @@ import java.time.LocalDateTime;
  * @createTime： 2021/6/17 8:14
  */
 @RestController
-@EnableScheduling
 @Slf4j
 public class ScheduleTaskController {
 
@@ -23,9 +24,18 @@ public class ScheduleTaskController {
      * 第二步，添加@Scheduled(cron = "0/5 * * * * ?")定时规则
      * cron详解：
      */
+    @Async
     @Scheduled(cron = "0/5 * * * * ?")
-    public void testScheduled() {
-        log.info("当前时间：{}", LocalDateTime.now());
+    public void testScheduled() throws InterruptedException {
+        log.info("任务一，当前时间：{}，当前线程：{}", LocalDateTime.now(), Thread.currentThread().getName());
+        Thread.sleep(5000);
+    }
+
+    @Async
+    @Scheduled(cron = "0/8 * * * * ?")
+    public void testScheduled2() throws InterruptedException {
+        log.info("任务二，当前时间：{}，当前线程：{}", LocalDateTime.now(), Thread.currentThread().getName());
+        Thread.sleep(5000);
     }
 
 }
