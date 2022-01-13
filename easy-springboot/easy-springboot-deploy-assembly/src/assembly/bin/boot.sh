@@ -7,36 +7,39 @@
 #   ./boot.sh status: 查看状态
 #   ./boot.sh stop  : 停止应用
 #   ./boot.sh stop  : 重启应用
-#启动参数
-JAVA_OPTS="-server -Xms400m -Xmx400m -Xmn300m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
+# 启动参数
+# -Xverify:none 禁用字节码验证
+# -XX:+DisableExplicitGC 禁止手动调用gc，System.gc()
+# -Djava.awt.headless=true 模拟外设，键盘，鼠标
+BIN_DIR=`dirname $0`
+DEPLOY_DIR=`cd "$BIN_DIR"/..; pwd`
+
+LOGGING_PATH=$DEPLOY_DIR/logs
+CATALINA_OUT=$LOGGING_PATH/catalina.out
+
+SPRING_CONFIG_LOCATION=$DEPLOY_DIR/config/application.yml
+LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
 
 SERVER_NAME='easy-springboot-deploy-assembly.jar'
 SERVER_PORT=8080
 
-BIN_DIR=`dirname $0`
-DEPLOY_DIR=`cd "$BIN_DIR"/..; pwd`
+JAVA_OPTS="-server -Xms400m -Xmx400m -Xmn300m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
+REMOTE_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9000"
 
-# 项目配置文件
-SPRING_CONFIG_LOCATION=$DEPLOY_DIR/config/application.yml
+JVM_HEAP_DUMP_CONFIG="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$LOGGING_PATH"
+APP_ENV="-Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION"
 
-# 日志配置
-LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
-LOGGING_PATH=$DEPLOY_DIR/logs
-CATALINA_OUT=$LOGGING_PATH/catalina.out
-
-APP_ENV=" -Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION "
+if [ "$1" = "" ];
+then
+    echo -e "\033[0;31m 请输入操作名 \033[0m  \033[0;34m {start|stop|restart|status} \033[0m"
+    exit 1
+fi
 
 if [ ! -d $LOGGING_PATH ]; then
   mkdir $LOGGING_PATH
 fi
 if [ ! -f $CATALINA_OUT ]; then
   touch $CATALINA_OUT
-fi
-
-if [ "$1" = "" ];
-then
-    echo -e "\033[0;31m 请输入操作名 \033[0m  \033[0;34m {start|stop|restart|status} \033[0m"
-    exit 1
 fi
 
 function start()
@@ -61,8 +64,7 @@ function start()
 
     echo -e "Starting the $SERVER_NAME ..."
     echo -e "\033[33m CATALINA_OUT: $CATALINA_OUT \033[0m"
-    echo -e "nohup java $JAVA_OPTS $APP_ENV -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &"
-    nohup java $JAVA_OPTS $APP_ENV -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &
+    nohup java $REMOTE_DEBUG $JAVA_OPTS $JVM_HEAP_DUMP_CONFIG $APP_ENV -jar $DEPLOY_DIR/$SERVER_NAME > $CATALINA_OUT 2>&1 &
     COUNT=0
     while [ $COUNT -lt 1 ]; do
       echo -e ".\c"
@@ -79,6 +81,7 @@ function start()
     echo -e "\033[32m OK! \033[0m"
     PIDS=`ps -f | grep java | grep "$SERVER_NAME" | awk '{print $2}'`
     echo -e "\033[32m PID: $PIDS \033[0m"
+    exit 0
 }
 
 function stop()
@@ -122,12 +125,12 @@ function status()
 {
     PIDS=`ps -ef | grep java | grep "$SERVER_NAME" | awk '{print $2}'`
     if [ -n "$PIDS" ]; then
-	echo -e "\033[32m The $SERVER_NAME is running...! \033[0m"
-	echo -e "\033[32m PID: $PIDS \033[0m"
-        exit 0
-    else
-	echo -e "\033[33m $SERVER_NAME is not running... \033[0m"
-	exit 0
+	    echo -e "\033[32m The $SERVER_NAME is running...! \033[0m"
+	    echo -e "\033[32m PID: $PIDS \033[0m"
+            exit 0
+        else
+	    echo -e "\033[33m $SERVER_NAME is not running... \033[0m"
+	    exit 0
     fi
 }
 
