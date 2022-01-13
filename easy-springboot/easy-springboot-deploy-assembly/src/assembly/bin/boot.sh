@@ -26,8 +26,8 @@ REMOTE_DEBUG_PORT=9000
 
 JAVA_OPTS="-server -Xms400m -Xmx400m -Xmn300m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
 REMOTE_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=$REMOTE_DEBUG_PORT"
-
 JVM_HEAP_DUMP_CONFIG="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$LOGGING_PATH"
+
 APP_ENV="-Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION"
 
 if [ "$1" = "" ];
