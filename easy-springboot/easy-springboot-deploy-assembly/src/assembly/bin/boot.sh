@@ -1,33 +1,37 @@
 #!/bin/bash
-#功能简介：springboot脚本文件
-#        执行该脚本需要进入bin目录下执行。
-#参数简介：
+# 功能简介：springboot脚本文件
+# 参数简介：
 #    $1:操作名称
-#   ./boot.sh start : 启动应用
-#   ./boot.sh status: 查看状态
-#   ./boot.sh stop  : 停止应用
-#   ./boot.sh stop  : 重启应用
-# 启动参数
-# -Xverify:none 禁用字节码验证
-# -XX:+DisableExplicitGC 禁止手动调用gc，System.gc()
-# -Djava.awt.headless=true 模拟外设，键盘，鼠标
+#     sh boot.sh start : 启动应用
+#     sh boot.sh status: 查看状态
+#     sh boot.sh stop  : 停止应用
+#     sh boot.sh stop  : 重启应用
+
 BIN_DIR=`dirname $0`
 DEPLOY_DIR=`cd "$BIN_DIR"/..; pwd`
 
 LOGGING_PATH=$DEPLOY_DIR/logs
 CATALINA_OUT=$LOGGING_PATH/catalina.out
 
-SPRING_CONFIG_LOCATION=$DEPLOY_DIR/config/application.yml
+SPRING_CONFIG_LOCATION=$DEPLOY_DIR/config
 LOGGING_CONFIG=$DEPLOY_DIR/config/logback-spring.xml
 
+# SERVER_NAME 应用名称
+# SERVER_PORT 应用端口
 SERVER_NAME='easy-springboot-deploy-assembly.jar'
 SERVER_PORT=8080
-REMOTE_DEBUG_PORT=9000
 
-JAVA_OPTS="-server -Xms400m -Xmx400m -Xmn300m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
-REMOTE_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=$REMOTE_DEBUG_PORT"
-JVM_HEAP_DUMP_CONFIG="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$LOGGING_PATH"
+# -Xverify:none 禁用字节码验证
+# -XX:+DisableExplicitGC 禁止手动调用gc，System.gc()
+# -Djava.awt.headless=true 模拟外设，键盘，鼠标
+JAVA_OPTS="-server -Xms512m -Xmx512m -Xmn256m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
+REMOTE_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9000"
+JVM_HEAP_DUMP_CONFIG="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$DEPLOY_DIR/dump"
 
+# -Dlogging.config 日志文件配置
+# -Dlogging.path 日志文件的位置
+# -Dspring.config.location 指定spring配置文件
+# -Dspring.config.additional-location 额外的spring配置文件
 APP_ENV="-Dlogging.path=$LOGGING_PATH -Dlogging.config=$LOGGING_CONFIG -Dspring.config.location=$SPRING_CONFIG_LOCATION"
 
 if [ "$1" = "" ];
