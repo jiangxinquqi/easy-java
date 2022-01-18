@@ -10,6 +10,8 @@
 BIN_DIR=`dirname $0`
 DEPLOY_DIR=`cd "$BIN_DIR"/..; pwd`
 
+WAIT_FOR=10
+
 LOGGING_PATH=$DEPLOY_DIR/logs
 CATALINA_OUT=$LOGGING_PATH/catalina.out
 
@@ -94,7 +96,7 @@ function stop()
 
     PIDS=`ps -ef | grep java | grep "$SERVER_NAME" |awk '{print $2}'`
     if [ -z "$PIDS" ]; then
-      echo "\033[31m ERROR: The $SERVER_NAME does not started! \033[0m"
+      echo -e "\033[31m ERROR: The $SERVER_NAME does not started! \033[0m"
       exit 1
     fi
 
@@ -123,7 +125,7 @@ function restart()
 {
 	stop
 	sleep 2
-	start
+	timeout start
 }
 
 function status()
@@ -139,9 +141,24 @@ function status()
     fi
 }
 
+timeout()
+{
+    waitfor=$WAIT_FOR
+    command=$*
+    $command &
+    commandpid=$!
+    ( sleep $waitfor ; kill -9 $commandpid > /dev/null 2>&1 ) &
+    watchdog=$!
+    sleeppid=$PPID
+    wait $commandpid > $CATALINA_OUT 2>&1
+    kill $sleeppid > $CATALINA_OUT 2>&1
+    echo -e "\033[33m Startup timeout, you can see log in: $CATALINA_OUT \033[0m"
+}
+
+
 case $1 in
 	start)
-	start;;
+	timeout start;;
 	stop)
 	stop;;
 	restart)
