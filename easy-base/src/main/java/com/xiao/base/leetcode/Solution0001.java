@@ -25,4 +25,45 @@ public class Solution0001 {
         }
         return new int[0];
     }
+
+    public int[] twoSum2(int[] numbers, int target) {
+        int index1 = 1, index2 = numbers.length - 1;
+        while(index1 <= numbers.length/2) {
+            int sum = numbers[index1] + numbers[index2];
+            if(sum < target) {
+                index1++;
+                continue;
+            }
+            if(sum > target) {
+                index2--;
+                continue;
+            }
+            return new int[] {index1, index2};
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+
+        int x = 8;
+        int left = 1, right = x, mid , sqrt = -1;
+
+        while(left <= right) {
+            mid = left + (right - left) / 2;
+            sqrt = x / mid;
+            if(sqrt == mid) {
+                System.out.println(sqrt);
+                break;
+            }
+
+            if(sqrt < mid) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        System.out.println(right);
+    }
 }
+
