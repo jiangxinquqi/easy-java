@@ -11,3 +11,5 @@ _shallwectl(){
 		COMPREPLY=($(compgen -W "${services}" -- ${cur}))
 	fi
 }
+
+complete -F _shallwectl shallwectl

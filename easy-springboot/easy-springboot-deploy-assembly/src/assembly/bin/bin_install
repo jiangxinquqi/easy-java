@@ -1,5 +1,12 @@
 #!/bin/bash
+# 该脚本只执行一次
 chmod 755 shallwectl
+
+# 如果使用的是bash
+echo 'export PATH=/opt/microservice/bin;$PATH
+source /opt/microservice/bin/shallwectl_completion.sh' >> $HOME/.bashrc
+
+# 如果使用的是zsh
 echo 'autoload -U bashcompinit; bashcompinit
 export PATH=/opt/microservice/bin;$PATH
-source /opt/microservice/bin/shallwectl_completion.sh' >> $HOME/.bashrc
+source /opt/microservice/bin/shallwectl_completion.sh' >> $HOME/.zshrc
