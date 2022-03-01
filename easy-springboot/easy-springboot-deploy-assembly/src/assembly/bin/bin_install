@@ -1,0 +1,5 @@
+#!/bin/bash
+chmod 755 shallwectl
+echo 'autoload -U bashcompinit; bashcompinit
+export PATH=/opt/microservice/bin;$PATH
+source /opt/microservice/bin/shallwectl_completion.sh' >> $HOME/.bashrc

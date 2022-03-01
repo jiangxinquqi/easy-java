@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+print_usage() {
+	cat <<EOF
+$1
+Usage: shallwectl COMMAND SERVICE
+
+Commands:
+  start
+  stop
+  restart
+  status
+
+Services:
+ service_name1
+ service_name2
+
+EOF
+
+ exit 1
+
+}
+
+# begin to check arguments
+[[ $# -ne 2 ]] && print_usage "There should be 2 arguments"
+
+CMD=$1
+[[ ! "$CMD" =~ ^(start|stop|status|restart)$ ]] && print_usage "COMMAND is incorrect"
+
+SERVICE=$2
+DEPLOY_HOME=/opt/microservice
+
+declare -A SERVICE_MAP
+SERVICE_MAP=( \
+	[service1]="service1" \
+	[deploy]="easy-springboot-deploy-assembly"
+)
+
+
+
+SERVICE_DIR=${SERVICE_MAP[$SERVICE]}
+[[ -z $SERVICE_DIR ]] && print_usage "SERVICE is incorrect"
+SERVICE_HOME=${DEPLOY_HOME}/${SERVICE_DIR}
+
+# run command
+sh "${SERVICE_HOME}/bin/boot.sh" "$CMD"
+
