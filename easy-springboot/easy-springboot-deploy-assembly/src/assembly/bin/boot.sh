@@ -28,7 +28,9 @@ SERVER_PORT=8080
 # -Djava.awt.headless=true 模拟外设，键盘，鼠标
 JAVA_OPTS="-server -Xms512m -Xmx512m -Xmn256m -Xverify:none -XX:+DisableExplicitGC -Djava.awt.headless=true"
 REMOTE_DEBUG="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9000"
-JVM_HEAP_DUMP_CONFIG="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$DEPLOY_DIR/dump"
+
+JVM_XIAO="shallwe_clt restart easy"
+JVM_HEAP_DUMP_CONFIG="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=$DEPLOY_DIR/dump -XX:OnOutOfMemoryError=$JVM_XIAO"
 
 # -Dlogging.config 日志文件配置
 # -Dlogging.path 日志文件的位置

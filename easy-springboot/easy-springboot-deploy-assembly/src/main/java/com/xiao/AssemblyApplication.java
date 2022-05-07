@@ -29,9 +29,11 @@ public class AssemblyApplication {
     @Value("${xiao}")
     private String xiao;
 
+    private static String[] arg;
+
     public static void main(String[] args) {
         SpringApplication.run(AssemblyApplication.class, args);
-        dump(args);
+        arg = args;
     }
 
     @GetMapping("/test")
@@ -45,12 +47,19 @@ public class AssemblyApplication {
         return xiao;
     }
 
-    static class OOM{}
+    @GetMapping("/dump")
+    public String dump() {
+        AssemblyApplication.dump(arg);
+        return "success";
+    }
+
+    static class OOM {
+    }
 
     public static void dump(String[] args) {
         int i = 0;//模拟计数多少次以后发生异常
         try {
-            while (true){
+            while (true) {
                 i++;
                 Enhancer enhancer = new Enhancer();
                 enhancer.setSuperclass(OOM.class);
@@ -58,13 +67,13 @@ public class AssemblyApplication {
                 enhancer.setCallback(new MethodInterceptor() {
                     @Override
                     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-                        return methodProxy.invokeSuper(o,args);
+                        return methodProxy.invokeSuper(o, args);
                     }
                 });
                 enhancer.create();
             }
         } catch (Throwable e) {
-            System.out.println("=================多少次后发生异常："+i);
+            System.out.println("=================多少次后发生异常：" + i);
             e.printStackTrace();
         }
     }
