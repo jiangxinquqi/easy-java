@@ -29,6 +29,7 @@
         <module>easy-spring-boot-shallwe</module>
         <module>easy-springboot-log-log4j2</module>
         <module>easy-springboot-mq-kafka</module>
+        <module>easy-spring-boot-auth-shiro</module>
     </modules>
 
 </project>

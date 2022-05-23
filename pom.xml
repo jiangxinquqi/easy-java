@@ -14,6 +14,7 @@
         <module>easy-springcloud</module>
         <module>easy-common</module>
         <module>easy-base</module>
+        <module>easy-springboot/easy-springboot-mutilcluster</module>
     </modules>
 
     <properties>
