@@ -17,4 +17,12 @@ public class Document {
     @Field
     private String name_cn;
 
+    public static void main(String[] args) {
+        String group = "100003_default";
+        if (group.endsWith("_default")) {
+            group = group.split("_")[0];
+        }
+        System.out.println(group);
+    }
+
 }

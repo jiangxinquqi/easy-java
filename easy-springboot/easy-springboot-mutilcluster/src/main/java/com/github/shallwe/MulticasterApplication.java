@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class MutilClusterApplication {
+public class MulticasterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MutilClusterApplication.class, args);
+        SpringApplication.run(MulticasterApplication.class, args);
     }
 
     @GetMapping("/test")
