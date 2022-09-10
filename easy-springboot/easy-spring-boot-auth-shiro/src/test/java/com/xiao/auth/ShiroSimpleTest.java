@@ -11,7 +11,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ShiroSimpleTest {
+public class  ShiroSimpleTest {
 
     @Test
     public void test() {
