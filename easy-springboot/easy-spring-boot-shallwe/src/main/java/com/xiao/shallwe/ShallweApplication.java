@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShallweApplication {
 
     public static void main(String[] args) {
-        System.setProperty("xiaoname", "jianjun");
+        System.setProperty("xiaoname", "jianjun"); 
         SpringApplication.run(ShallweApplication.class, args);
     }
 
